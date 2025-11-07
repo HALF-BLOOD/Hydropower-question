@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hydropower Engineering MCQ Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .progress-container {
+            background: white;
+            padding: 20px 30px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        .progress-text {
+            margin-top: 10px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .topic-selector {
+            margin-bottom: 30px;
+        }
+
+        .topic-selector label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .topic-selector select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .topic-selector select:focus {
+            outline: none;
+            border-color: #1e3c72;
+        }
+
+        .question-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .question-number {
+            color: #1e3c72;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .question-text {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            background: white;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .option:hover {
+            border-color: #1e3c72;
+            transform: translateX(5px);
+        }
+
+        .option input {
+            margin-right: 12px;
+            cursor: pointer;
+        }
+
+        .option.correct {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+
+        .option.incorrect {
+            background: #f8d7da;
+            border-color: #dc3545;
+        }
+
+        .option.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.4);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: #5a6268;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .results {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .results h2 {
+            color: #1e3c72;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .score-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px auto;
+            color: white;
+            font-size: 3em;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(30, 60, 114, 0.3);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .stat-box h3 {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .stat-box p {
+            color: #333;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+
+            .header h1 {
+                font-size: 1.5em;
+            }
+
+            .navigation {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚡ Hydropower Engineering MCQ Test</h1>
+            <p>Test your knowledge in Hydropower Systems & Design</p>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">Question 0 of 0</div>
+        </div>
+
+        <div class="content">
+            <div id="quizSection">
+                <div class="topic-selector">
+                    <label for="topicSelect">Select Topic:</label>
+                    <select id="topicSelect">
+                        <option value="all">All Topics (Complete Test)</option>
+                        <option value="planning">Planning of Hydropower Projects</option>
+                        <option value="power_energy">Power and Energy Production</option>
+                        <option value="storage">Headworks of Storage Plant</option>
+                        <option value="ror">Headworks of RoR Plants</option>
+                        <option value="conveyance">Water Conveyance Structures</option>
+                        <option value="machines">Hydro-Electric Machines & Powerhouse</option>
+                        <option value="additional">Additional Concepts</option>
+                    </select>
+                </div>
+
+                <div id="questionContainer"></div>
+
+                <div class="navigation">
+                    <button class="btn btn-secondary" id="prevBtn">← Previous</button>
+                    <button class="btn btn-primary" id="nextBtn">Next →</button>
+                    <button class="btn btn-primary hidden" id="submitBtn">Submit Test</button>
+                </div>
+            </div>
+
+            <div id="resultsSection" class="results hidden">
+                <h2>🎉 Test Complete!</h2>
+                <div class="score-circle" id="scoreCircle">0%</div>
+                <div class="stats">
+                    <div class="stat-box">
+                        <h3>Total Questions</h3>
+                        <p id="totalQuestions">0</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Correct Answers</h3>
+                        <p id="correctAnswers">0</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Wrong Answers</h3>
+                        <p id="wrongAnswers">0</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Score</h3>
+                        <p id="scoreText">0%</p>
+                    </div>
+                </div>
+                <button class="btn btn-primary" id="restartBtn">Restart Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const allQuestions = [
+            // General Questions (1-11)
+            {topic: "planning", q: "Pelton turbines are used for …………………", options: ["medium head application", "low head applications", "in steam power plant", "high head application"], answer: 3},
+            {topic: "machines", q: "Which principle is used in Hydraulic Turbines?", options: ["Braggs law", "Pascal's Law", "Faraday Law", "Newton's second law"], answer: 3},
+            {topic: "planning", q: "Among the hydropower plants given below, ……….. is not a peaking-ROR type.", options: ["Kaligandaki A", "Marsyangdi", "Kulekhani-1", "Upper Tamakosh"], answer: 2},
+            {topic: "power_energy", q: "If head remains constant, maximum installed capacity will be estimated with ………Q% (or discharge corresponding to percentage of time exceedance).", options: ["20%", "30%", "40%", "70%"], answer: 2},
+            {topic: "planning", q: "The Upper Tamakoshi hydroelectric project, which is largest hydropower constructed, have an installed capacity of", options: ["546 MW", "564 MW", "456 MW", "654 MW"], answer: 2},
+            {topic: "planning", q: "------------ is not a consideration for site selection of hydroelectric power plant.", options: ["rocky land", "sedimentation", "large catchment area", "availability of water"], answer: 0},
+            {topic: "planning", q: "What is the right sequential order for Power development nowadays in case of Nepal?", options: ["PPA-survey license- Testing and commissioning -financial closure", "Survey license -PPA-financial closure-Testing and commissioning", "Financial closure-survey license-PPA-Testing and commission", "PPA-financial closure -Survey license-Testing and commissioning"], answer: 1},
+            {topic: "power_energy", q: "A ROR type hydropower plant with 100MW installed capacity and with Q40% design flow can generate the full capacity at least for…….. days of a year.", options: ["145 days", "245 days", "300 days", "365 days"], answer: 0},
+            {topic: "power_energy", q: "A hydro-turbine with net head 90m and discharge 10 m³/s will have the power output of", options: ["6 MW", "8 MW", "10 MW", "11 MW"], answer: 1},
+            {topic: "planning", q: "Which type of hydropower plant uses the natural flow of a river to generate electricity?", options: ["Run-of-river plant", "Pumped-storage plant", "Reservoir plant", "Tidal plant"], answer: 0},
+            {topic: "ror", q: "A settling basin is expected to remove solids greater than 0.008mm from a maximum inflow of 0.25m³/sec. Particles of the minimum size settle at Vs = 5.9*10⁻⁵ m/sec. The necessary area for a 1m deep basin is", options: ["4237 sqm", "2492 sqm", "9242 sqm", "3724 sqm"], answer: 0},
+
+            // Planning of Hydropower Projects (12-28)
+            {topic: "planning", q: "Hydroelectric power plant is mainly located in", options: ["Flat areas", "Deserts", "Hilly areas", "Deltas"], answer: 2},
+            {topic: "planning", q: "Hydroelectric power plant is", options: ["Non-renewable source of energy", "Conventional source of energy", "Non-conventional source of energy", "Continuous source of energy"], answer: 1},
+            {topic: "planning", q: "The amount of electrical energy that can be generated by a hydroelectric power plant depends upon", options: ["Head of water", "Quantity of water", "Specific weight of water", "Efficiency of Alternator"], answer: 0},
+            {topic: "planning", q: "Which of the following is not an advantage of hydro-electric power plant?", options: ["no fuel requirement", "low running cost", "continuous power source", "no standby losses"], answer: 2},
+            {topic: "planning", q: "What is the Economically feasible power potential of Nepal?", options: ["83 GW", "44 GW", "42 GW", "42000 GW"], answer: 2},
+            {topic: "planning", q: "Which of the following river basin has highest hydropower potential of Nepal?", options: ["Gandaki river basin", "Koshi river basin", "Karnali & mahakali river basin", "Other river basin"], answer: 2},
+            {topic: "planning", q: "Hydropower currently supplies around ….. of the world's total electric power supply.", options: ["7.5%", "17%", "35%", "55%"], answer: 1},
+            {topic: "planning", q: "What is gross hydropower potential of the world?", options: ["83000 TWhr/yr", "38,607 TWhr/yr", "14,605 TWhr/yr", "8,772 TWhr/yr"], answer: 1},
+            {topic: "planning", q: "…… is the second largest country in total installed capacity of hydropower plant.", options: ["China", "Brazil", "U.S.A", "Canada"], answer: 1},
+            {topic: "planning", q: "When was the first hydropower plant generated in Nepal?", options: ["1912 AD", "1922 AD", "1911 AD", "1901 AD"], answer: 2},
+            {topic: "planning", q: "The first hydropower of Nepal from private sector is", options: ["Budigandaki", "Chameliya", "Khimti", "Trisuli 3B"], answer: 2},
+            {topic: "planning", q: "The Survey license for the hydropower project is provided for the maximum period of", options: ["2 yrs", "3 yrs", "5 yrs", "15 yrs"], answer: 1},
+            {topic: "planning", q: "Which of the following is hydro plant is PRoR type?", options: ["Khimti", "Kulekhani", "Upper-Tamakoshi", "Bhotekoshi"], answer: 0},
+            {topic: "planning", q: "The second largest hydropower project of the world is", options: ["Baihetan Dam hydropower project", "Wudongde Dam hydropower project", "Three George Dam hydropower project", "Itaipu Dam hydropower Project"], answer: 3},
+            {topic: "planning", q: "Water for a hydroelectric power station is obtained from a reservoir with a head of 150 m. What will be the approximate electrical power generated per hour per cubic meter of water if mechanical efficiency is 0.85 and electric efficiency is 0.92?", options: ["1150.7 kWh", "1470.0 kWh", "945.7 kWh", "1350.0 kWh"], answer: 0},
+            {topic: "planning", q: "A canal drop is 6m and discharge available through the turbine is 50 cumecs. The efficiency of the hydro plant is 0.8. Find the electrical power available.", options: ["2352 kw", "2352 mw", "2.352 kw", "235.2 kw"], answer: 0},
+            {topic: "planning", q: "Nepal Electricity Authority (NEA) is established under the", options: ["Nepal Electricity Act 1984", "Nepal Electricity Act 1948", "Nepal Electricity Act 1994", "Nepal Electricity Act 1949"], answer: 0},
+
+            // Power and Energy Production (29-45)
+            {topic: "power_energy", q: "The net head for the reaction turbine is", options: ["Gross head + sum of all head losses", "Gross head – sum of all head losses", "Gross head – sum of all head loss + suction pressure head", "Gross head – sum of all head loss - suction pressure head"], answer: 1},
+            {topic: "power_energy", q: "What is the primary objective of a power and energy potential study in hydropower projects?", options: ["To estimate the amount of electricity that can be generated from a given water source", "To evaluate the feasibility of a proposed hydropower project", "To assess the environmental impacts of a proposed hydropower project", "To determine the water requirements of a proposed hydropower project"], answer: 0},
+            {topic: "power_energy", q: "The power which is available only in periods of high flow in river is called", options: ["Primary power", "Secondary power", "Firm power", "Plant capacity"], answer: 1},
+            {topic: "power_energy", q: "The ratio of average output of a plant to plant capacity is", options: ["Load factor", "Capacity factor", "Utilization factor", "Power factor"], answer: 1},
+            {topic: "power_energy", q: "The value of diversity factor is always", options: ["Less than zero", "Less than 1", "Between 0 and 1", "Greater than 1"], answer: 3},
+            {topic: "power_energy", q: "In Nepal for project upto ….. , the installed capacity is fixed based on Q40.", options: ["100 KW", "1 MW", "25 MW", "100 MW"], answer: 2},
+            {topic: "power_energy", q: "Which of the following method is utilized for fixing installed capacity of Hydropower plant?", options: ["Demand Supply Approach", "Rating curve Approach", "Mass Analysis Approach", "Marginal Cost Benefit Approach"], answer: 2},
+            {topic: "power_energy", q: "In context of Nepal, the installed capacity of mini-hydropower plant is", options: ["Less than 100 KW", "Less than 500 KW", "100 -1000 KW", "1-10MW"], answer: 2},
+            {topic: "power_energy", q: "Which type of hydropower plant uses a dam to create a reservoir to store water for electricity generation?", options: ["Reservoir plant", "Run-of-river plant", "Pumped-storage plant", "Tidal plant"], answer: 0},
+            {topic: "power_energy", q: "The ratio of sediment deposited in the reservoir to the total volume of sediment carried by the river is", options: ["Trap efficiency", "Sedimentation", "Capacity Inflow ratio", "Life of reservoir"], answer: 0},
+            {topic: "power_energy", q: "If 20% of the reservoir capacity is earmarked for dead storage in a storage reservoir of 30 M. Cum and the average annual silt deposition in the reservoir is 0.1M Cum, the useful life of the reservoir will start reducing after", options: ["60 yrs", "90 yrs", "150 yrs", "30 yrs"], answer: 0},
+            {topic: "power_energy", q: "The volume of water stored between normal reservoir level and maximum reservoir level is", options: ["Useful Storage", "Live Storage", "Surcharge Storage", "Dead Storage"], answer: 2},
+            {topic: "power_energy", q: "The effective storage of a flood control reservoir is", options: ["The storage volume of flood water above the maximum reservoir level", "The amount of water supplied from reservoir in a particular interval of time", "The live storage plus the surcharge storage minus the valley storage", "The storage between minimum and maximum reservoir levels under operating conditions"], answer: 3},
+            {topic: "power_energy", q: "If the peak load on a power plant having a capacity of 100 MW is 70 MW during a given week and the energy is 58,80,000 KWH, the load factor for the plant for the week will be", options: ["35%", "50%", "70%", "65%"], answer: 1},
+            {topic: "power_energy", q: "Calculate utilization factor if the maximum power utilized is 40,000 kW and two turbo generators installed each of capacity 23,000 kW.", options: ["73%", "87%", "57.5%", "63%"], answer: 1},
+            {topic: "power_energy", q: "In a hydropower plant of installed capacity 100MW, 42GWh energy is produced in one month. What is the approx capacity factor of that plant?", options: ["56%", "58%", "60%", "64%"], answer: 1},
+            {topic: "power_energy", q: "The consumer consume 600 Kwh per day at a load factor of 0.5. Without increase maximum demand, if the consumer increases the load factor to 0.8, the consumption of energy in kWh would be,", options: ["480", "960", "900", "300"], answer: 1},
+            {topic: "power_energy", q: "The minimum power which a hydropower plant can generate throughout the year is called as", options: ["power plant capacity", "power plant load", "firm power", "water power"], answer: 2},
+
+            // Headworks of Storage Plant (46-64)
+            {topic: "storage", q: "The concrete dam which resist water pressure and other forces due to its self-weight is called", options: ["Gravity dam", "Arch dam", "Buttress dam", "All of these"], answer: 0},
+            {topic: "storage", q: "In diaphragm type earth dam, the thickness of thin impervious material in central part is", options: ["Less than 2.5 m", "Less than 5.0 m", "Less than 10.0 m", "Greater than 7.5m"], answer: 0},
+            {topic: "storage", q: "The water stored during floods and release it gradually with safely in", options: ["Storage dam", "Diversion dam", "Detention dam", "Coffer dam"], answer: 2},
+            {topic: "storage", q: "The provision of drainage gallery in a gravity dam help in reducing", options: ["Hydrostatic pressure", "Seepage pressure", "Silt pressure", "Both hydrostatic pressure and seepage pressure"], answer: 1},
+            {topic: "storage", q: "……….. type of dam is preferred if spillway location is available separate from main dam.", options: ["Arch dam", "Overflow concrete dam", "Earthen dam", "Earth dam and concrete gravity dam"], answer: 3},
+            {topic: "storage", q: "What is the primary function of a cofferdam?", options: ["To store large volumes of water", "To regulate water flow for irrigation purposes", "To prevent flooding", "To provide a dry work area during construction"], answer: 3},
+            {topic: "storage", q: "A narrow V-shaped valley indicates the choice of", options: ["Concrete overflow dam", "Spillway", "Arch dam", "Earth dam"], answer: 2},
+            {topic: "storage", q: "In concrete gravity dam with a vertical u/s face, the stabilizing force is provide by?", options: ["Wt of dam", "Uplift Pressure", "U/S water", "All of these"], answer: 0},
+            {topic: "storage", q: "What type of failure occurs when the minimum stress exceeds the allowable compressive stress of the dam material?", options: ["Overturning", "Crushing", "Sliding", "Development of tension"], answer: 1},
+            {topic: "storage", q: "What is the value of eccentricity for no tension condition in the dam?", options: ["e < B/6", "e > B/6", "e>B/3", "e<B/3"], answer: 0},
+            {topic: "storage", q: "Trash racks are built for…..", options: ["discharging the water freely from the turbine exit to tailrace", "preventing the turbine from ingress of floating and other materials", "creating artificial head to store sufficient potential energy of water", "controlling the opening of valves"], answer: 1},
+            {topic: "storage", q: "In a hydro-electric plant, spillways are used", options: ["To dissipate energy of surplus water", "To discharge surplus water on the downstream side of dam", "Water is not available in sufficient quantity", "None of the above"], answer: 1},
+            {topic: "storage", q: "When reservoir is full, the maximum compressive force in a gravity dam is produced at the", options: ["Heel", "Toe", "Center", "Center of height"], answer: 1},
+            {topic: "storage", q: "Which of the following spillway is least suitable for the earthen dam?", options: ["Chute spillway", "Ogee spillway", "Side channel spillway", "Shaft spillway"], answer: 1},
+            {topic: "storage", q: "What is the primary cause of dam failure due to overtopping?", options: ["Inadequate spillway capacity", "Poor design of the dam foundation", "Natural disasters such as earthquakes", "Human error during construction or maintenance"], answer: 0},
+            {topic: "storage", q: "What is the specific discharge over an ogee spillway if head over crest (H)= 1.2m and Cd = 2.2.", options: ["8.54 cumecs/m", "7.12 cumecs/m", "3.56 cumecs/m", "2.89 cumecs/m"], answer: 2},
+            {topic: "storage", q: "If the Height of the dam is 35 meters and specific gravity of concrete is 2.4 with no uplift pressure, what should be the minimum base width of dam by considering elementary profile of a dam, if the coefficient of friction = 0.7.", options: ["20.33", "21.23", "35", "22.6"], answer: 0},
+            {topic: "storage", q: "A shaft spillway is provided", options: ["Inside the body of gravity dam", "Inside the U/S of reservoir", "Inside the D/S of reservoir", "On side flanks of the main dam"], answer: 1},
+            {topic: "storage", q: "In chute spillways, flow is usually", options: ["Critical", "Uniform", "Super Critical", "Sub Critical"], answer: 2},
+
+            // Headworks of RoR Plants (65-72)
+            {topic: "ror", q: "The ideal feature of head works is", options: ["Withdrawal of the required amount of water", "Minimize Sediment Entry", "Minimize Hydraulic loss", "All of these"], answer: 3},
+            {topic: "ror", q: "The design discharge of intake should be taken as", options: ["10-20% more than that of turbine discharge", "5-10% more than that of turbine discharge", "40-50% more than that of turbine discharge", "10-20% less than that of turbine discharge"], answer: 0},
+            {topic: "ror", q: "The side intake is suitable when the slope of the river is", options: ["Steep", "Mild", "Horizontal/flat", "None of the above"], answer: 0},
+            {topic: "ror", q: "The settling basin is located in a canal at", options: ["u/s of gravel trap", "d/s of gravel trap", "Anywhere", "None of the above"], answer: 1},
+            {topic: "ror", q: "Which of the following design criteria are important for design of settling basin?", options: ["Optimum removal of sediment", "Efficient flushing", "Settling capacity", "All of the above"], answer: 3},
+            {topic: "ror", q: "In which range, the gradual expansion of inlet gives smooth transition in settling basin?", options: ["5° to 7°", "7° to 10°", "10° to 15°", "25° to 27°"], answer: 0},
+            {topic: "ror", q: "If Q is the discharge in m³/s, T is sediment emptying frequency in seconds and C is sediment concentration kg/m³ then sediment load can be computed from", options: ["S = Q x T x C", "S = Q/(T x C)", "S = T/(Q x C)", "S = C/(Q x T)"], answer: 0},
+            {topic: "ror", q: "The methods which is adopted in sediment handling are", options: ["Removing sediment inflow through watershed management and erosion control", "Removal of deposit from reservoir", "Construction of settling basin", "All of the above"], answer: 3},
+
+            // Water Conveyance Structures (73-87)
+            {topic: "conveyance", q: "A channel or a free-flow tunnel leading water to the fore bay or a pressure tunnel leading the water to the surge tank is called as", options: ["Penstock", "Headrace tunnel", "Tailrace tunnel", "Diversion tunnel"], answer: 1},
+            {topic: "conveyance", q: "Which one section of tunnel is most suitable for structural consideration?", options: ["Circular section", "D-section", "Horse-shoe section", "Egg shaped section"], answer: 2},
+            {topic: "conveyance", q: "The minimum size of the tunnel should be at least", options: ["2m diameter", "3 m diameter", "4 m diameter", "1.5 m diameter"], answer: 0},
+            {topic: "conveyance", q: "If D is the diameter of tunnel in m, then the empirical formula to calculate the thickness of tunnel lining in mm is", options: ["42 D", "82 D", "27 D", "108 D"], answer: 0},
+            {topic: "conveyance", q: "Which phenomenon in a pipe flow is termed as water hammer?", options: ["The rise of negative pressure", "The zero pressure in pipe flow", "Rise of pressure due to gradual closure of valve", "Sudden rise of pressure in a long pipe due to sudden closure of valve"], answer: 3},
+            {topic: "conveyance", q: "Which of the following element of hydroelectric power plant prevents the penstock from water hammer phenomenon?", options: ["Surge Tank", "Draft tubes", "Spillway", "Valves and Gates"], answer: 0},
+            {topic: "conveyance", q: "The enlarged body of water at the entrance of penstock is", options: ["Reservoir", "Pond", "Forebay", "Aqueduct"], answer: 2},
+            {topic: "conveyance", q: "The function of a surge tank is", options: ["Relieve the pipe line of excessive pressure transients", "Act as a reservoir for emergency conditions", "Avoid flow in reverse direction", "Smoothen the flow"], answer: 0},
+            {topic: "conveyance", q: "Drifters can be used to drill", options: ["only up holes", "only down holes", "horizontal or up holes", "horizontal, down or up holes"], answer: 3},
+            {topic: "conveyance", q: "Drift method of tunnelling is used to construct tunnels in", options: ["soft grounds", "rock", "self supporting grounds", "broken grounds"], answer: 1},
+            {topic: "conveyance", q: "The maximum upsurge for sudden closure of valve (or for sudden 100% load rejection) is given by", options: ["Zupsurge/Zmax = 1 - 2/3 P₀ + 1/9 P₀²", "Zupsurge/Zmax = 1 + 2/3 P₀ + 1/9 P₀²", "Zupsurge/Zmax = 1 - 2/3 P₀ + 2P₀²", "Zupsurge/Zmax = 1 - 2P₀ + 1/9 P₀²"], answer: 1},
+            {topic: "conveyance", q: "Penstock in a hydroelectric power plant is", options: ["A pipe connected to runner outlet", "Nozzle that release high pressure water on turbine blades", "A pipe connecting surge tank to turbine", "A pipe connecting surge tank to dam"], answer: 2},
+            {topic: "conveyance", q: "A Hydropower plant is going to be installed in Nepal. The power plant has the following characteristics, gross head=25m, design flow= 0.7 m3/s & the length of the penstock pipe is 500m long. The effective dia of penstock pipe required is?", options: ["0.567 m", "0.667 m", "0.75 m", "0.87 m"], answer: 0},
+            {topic: "conveyance", q: "The valve closure is said to be gradual if T is the interval of time taken for closing the valve, L is the length of pipe and C be the wave pressure.", options: ["T= 2L/C", "T> 2L/C", "T< 2L/C", "T= C/2L"], answer: 1},
+            {topic: "conveyance", q: "Energy dissipater provided if jump height is more than tail water depth", options: ["Roller bucket", "Ski jump", "Sloping apron", "All of the above"], answer: 3},
+
+            // Hydro-Electric Machines and Powerhouse (88-108)
+            {topic: "machines", q: "Those equipment which convert mechanical energy into hydraulic energy is", options: ["Turbine", "Pump", "Generator", "All of these"], answer: 1},
+            {topic: "machines", q: "The energy at the inlet of reaction turbine is", options: ["Kinetic energy", "Pressure energy", "Both (a) and (b)", "None"], answer: 2},
+            {topic: "machines", q: "Which of the following is impulse turbine?", options: ["Francis turbine", "Kaplan turbine", "Turgo turbine", "None of these"], answer: 2},
+            {topic: "machines", q: "The net head suitable for francis turbine is", options: ["0-60m", "60-350m", "350-600m", "500-2000m"], answer: 1},
+            {topic: "machines", q: "The direction of flow in Kaplan turbine is", options: ["Tangential flow", "Radial flow", "Axial flow", "Mixed flow"], answer: 2},
+            {topic: "machines", q: "……. turbine is installed and submerged below the tailrace.", options: ["Impulse turbine", "Reaction turbine", "Both", "None"], answer: 1},
+            {topic: "machines", q: "The specific speed range in francis turbine is", options: ["10-60 rpm", "80-400 rpm", "300-1000 rpm", "1000-1200 rpm"], answer: 1},
+            {topic: "machines", q: "Which of the following turbine has relatively higher efficiency?", options: ["Pelton turbine", "Francis turbine", "Kaplan turbine", "Same"], answer: 1},
+            {topic: "machines", q: "The number of bucket in runner of pelton turbine is", options: ["2D/d", "15 – 2D/d", "15 + 2D/d", "15 + D/2d"], answer: 2},
+            {topic: "machines", q: "The width of the bucket of pelton wheel is generally …… times the diameter of the jet", options: ["1.2", "2 to 3", "5", "10"], answer: 2},
+            {topic: "machines", q: "The efficiency of a pelton wheel working under head ……… with increase in power.", options: ["Remains same", "Increases", "Decreases", "None of the above"], answer: 0},
+            {topic: "machines", q: "The speed ratio in case of Francis turbine varies from", options: ["0.15 to 0.3", "0.4 to 0.5", "0.6 to 0.9", "1 to 1.5"], answer: 2},
+            {topic: "machines", q: "The draft tube is used for discharging water from the exit of", options: ["An impulse turbine", "A francis turbine", "A Kaplan turbine", "Both (b) and (c)"], answer: 3},
+            {topic: "machines", q: "In what type of turbine water enters in radial direction and leaves axial direction?", options: ["Tangential flow turbine", "Axial flow turbine", "Outward flow turbine", "Mixed flow turbine"], answer: 3},
+            {topic: "machines", q: "Impulse turbine and reaction turbine are classified based on?", options: ["Type of energy at inlet", "Direction of flow through runner", "Head at inlet of turbine", "Specific speed of turbine"], answer: 0},
+            {topic: "machines", q: "What is the purpose of a Draft tube (conical diffuser)?", options: ["To prevent flow separation", "To avoid Pressure drag", "To prevent rejection of heat", "To increase efficiency"], answer: 3},
+            {topic: "machines", q: "Unit speed is the speed of the turbine operating under________", options: ["One-meter head", "Pressure head", "Volumetric head", "Draft tube"], answer: 0},
+            {topic: "machines", q: "If the total discharge of a Pelton wheel is 3.672 m³/s and discharge of one jet is 1.818 m³/s, the number of jets required is", options: ["8", "2", "6", "4"], answer: 1},
+            {topic: "machines", q: "What is the number of buckets on the runner of a Pelton turbine if jet ratio is 12?", options: ["13", "21", "20", "6"], answer: 1},
+            {topic: "machines", q: "Find the specific speed of the turbine if speed = 6000 rpm, Power generation = 5MW in total by 2 turbines under head of 20m", options: ["6315 rpm", "8212.3 rpm", "2098 rpm", "8996.11 rpm"], answer: 0},
+            {topic: "machines", q: "For discharge =300 cumecs, net head=5m, speed of turbine=50 rpm and efficiency =82% and specific speed =500 rpm, determine the number of Kaplan turbine need to utilize the full potential of the river.", options: ["1", "2", "3", "4"], answer: 1},
+
+            // Additional Questions (109-128)
+            {topic: "additional", q: "Hydropower energy is.......source of energy", options: ["Conventional", "Commercial", "Conventional Renewable", "All of above"], answer: 3},
+            {topic: "additional", q: "Which is not the objective of the hydropower development policy 2058 B.S", options: ["Utilize the existing water resource", "To tie-up electrification with economic activities", "To extend rural electrification to support rural economic development.", "Collect the 5% royalty to use in the other development activities"], answer: 3},
+            {topic: "additional", q: "PPA rate for the RoR projects for the wet season is....", options: ["4.80 Nrs per unit", "12.4 Nrs per unit", "8.40 Nrs per unit", "7.1 Nrs per unit"], answer: 0},
+            {topic: "additional", q: "For the projects greater than 25MW, the installed capacity is fixed based on", options: ["40% Excedence of discharge in year", "30% Excedence of discharge in year", "Optimization study", "Fixed based on the past record"], answer: 2},
+            {topic: "additional", q: "Calculate the utilization factor if the maximum power utilized is 40,000kW and two turbo generators installed each of capacity 23,000kW.", options: ["73%", "87%", "57.7%", "63%"], answer: 1},
+            {topic: "additional", q: "The reciprocal of coincidence factor is...", options: ["Plant factor", "Utilization factor", "capacity factor", "Diversity factor"], answer: 3},
+            {topic: "additional", q: "Which of the following structures is constructed to separate under sluice from the main weir?", options: ["Marginal bund", "Divide Wall", "Head regulator", "None of the above"], answer: 1},
+            {topic: "additional", q: "The best location of the intake is in", options: ["Inner side of bend of river", "Outer side of bend of river", "Relatively straight portion", "None of the above"], answer: 1},
+            {topic: "additional", q: "The valve closure is said to be gradual if the time required to close the valve is:", options: ["t > (2 L)/c", "t = (2 L)/c", "t < (4 L)/c", "t < 2L/c"], answer: 0},
+            {topic: "additional", q: "If the velocity of pressure wave generated is 2 m/s, the value of critical time is:", options: ["2s", "4 s", "1 s", "0.5 s"], answer: 2},
+            {topic: "additional", q: "Surge tank in hydropower plants is provided for:", options: ["Controlling water hammer in penstock", "Constant generation of power", "Controlling surge in reservoir", "Controlling surge in river"], answer: 0},
+            {topic: "additional", q: "The static head of a centrifugal pump is equal to the .......of suction head and delivery head.", options: ["Product", "Difference", "sum", "None"], answer: 2},
+            {topic: "additional", q: "A Francis turbine is", options: ["Inward flow impulse turbine", "Outward flow impulse turbine", "Inward flow reaction turbine", "Outward flow reaction turbine"], answer: 2},
+            {topic: "additional", q: "Power developed by a turbine is (where H= head of water under which the turbine is working)", options: ["Directly proportional to H/2", "Directly proportional to H^3/2", "Inversely proportional to H/2", "Inversely proportional to H^3/2"], answer: 1},
+            {topic: "additional", q: "Which of the following is the correct equation for the electrical power generated by the hydroelectric power plant?", options: ["75×0.736 wQHη Watt", "(7.5/0.736) × wQHη Watt", "0.845 ×wQHη Watt", "9.81 ×wQHη Watt"], answer: 3},
+            {topic: "additional", q: "If discharge of a pump is 0.16 cumecs, the economic diameter of pipe, is", options: ["0.480m", "1.12m", "0.976m", "68.8cm"], answer: 0},
+            {topic: "additional", q: "Middle 1/3 rule is used in", options: ["Tension", "compression", "sliding", "shear"], answer: 0},
+            {topic: "additional", q: "What is the formula for limiting height of a gravity dam?", options: ["Hmax = f / (Sc + 1) γw", "Hmax = f / (Sc – 1) γw", "Hmax = f / (Sc + C) γw", "Hmax = f / (Sc – 1) γw"], answer: 1},
+            {topic: "additional", q: "A concrete gravity dam having a maximum reservoir level at 200m and RL of the dam bottom is 100m. The maximum allowable compressive stress in concrete is 3000 KN/m2 and sp gr of concrete is 2.4. Calculate the height of the dam and check whether it is high dam or low dam.", options: ["214.2m high dam", "90m high dam", "214.2 m low dam", "90 m low dam"], answer: 0},
+            {topic: "additional", q: "A hydropower runs at 20MW in a certain season. If peaking is done, the plant is able to run at 40 MW for 6 hr peaking period and 10 MW for remaining off peak hr. What is the benefit for peaking if the power rate is Rs. 12/kWh for peak period and Rs. 6/ kWh for off- peak hour?", options: ["Rs 280000", "Rs 360000", "Rs 108000", "Rs 300000"], answer: 2}
+        ];
+
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let selectedTopic = 'all';
+
+        // Initialize
+        document.getElementById('topicSelect').addEventListener('change', function() {
+            selectedTopic = this.value;
+            startQuiz();
+        });
+
+        document.getElementById('prevBtn').addEventListener('click', previousQuestion);
+        document.getElementById('nextBtn').addEventListener('click', nextQuestion);
+        document.getElementById('submitBtn').addEventListener('click', submitQuiz);
+        document.getElementById('restartBtn').addEventListener('click', restartQuiz);
+
+        function startQuiz() {
+            if (selectedTopic === 'all') {
+                currentQuestions = [...allQuestions];
+            } else {
+                currentQuestions = allQuestions.filter(q => q.topic === selectedTopic);
+            }
+            
+            currentQuestionIndex = 0;
+            userAnswers = new Array(currentQuestions.length).fill(null);
+            showQuestion();
+            updateProgress();
+        }
+
+        function showQuestion() {
+            const question = currentQuestions[currentQuestionIndex];
+            const container = document.getElementById('questionContainer');
+            
+            container.innerHTML = `
+                <div class="question-card">
+                    <div class="question-number">Question ${currentQuestionIndex + 1} of ${currentQuestions.length}</div>
+                    <div class="question-text">${question.q}</div>
+                    <div class="options">
+                        ${question.options.map((option, index) => `
+                            <label class="option ${userAnswers[currentQuestionIndex] !== null ? 'disabled' : ''} 
+                                ${userAnswers[currentQuestionIndex] === index ? (index === question.answer ? 'correct' : 'incorrect') : ''}
+                                ${userAnswers[currentQuestionIndex] !== null && index === question.answer ? 'correct' : ''}">
+                                <input type="radio" name="answer" value="${index}" 
+                                    ${userAnswers[currentQuestionIndex] === index ? 'checked' : ''}
+                                    ${userAnswers[currentQuestionIndex] !== null ? 'disabled' : ''}
+                                    onchange="selectAnswer(${index})">
+                                ${String.fromCharCode(97 + index)}) ${option}
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            updateButtons();
+            updateProgress();
+        }
+
+        function selectAnswer(answerIndex) {
+            userAnswers[currentQuestionIndex] = answerIndex;
+            showQuestion();
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < currentQuestions.length - 1) {
+                currentQuestionIndex++;
+                showQuestion();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                showQuestion();
+            }
+        }
+
+        function updateButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const submitBtn = document.getElementById('submitBtn');
+
+            prevBtn.disabled = currentQuestionIndex === 0;
+            
+            if (currentQuestionIndex === currentQuestions.length - 1) {
+                nextBtn.classList.add('hidden');
+                submitBtn.classList.remove('hidden');
+            } else {
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            }
+        }
+
+        function updateProgress() {
+            const answered = userAnswers.filter(a => a !== null).length;
+            const progress = (answered / currentQuestions.length) * 100;
+            
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = 
+                `Question ${currentQuestionIndex + 1} of ${currentQuestions.length} | Answered: ${answered}`;
+        }
+
+        function submitQuiz() {
+            let correct = 0;
+            let wrong = 0;
+
+            currentQuestions.forEach((question, index) => {
+                if (userAnswers[index] === question.answer) {
+                    correct++;
+                } else if (userAnswers[index] !== null) {
+                    wrong++;
+                }
+            });
+
+            const score = Math.round((correct / currentQuestions.length) * 100);
+
+            document.getElementById('quizSection').classList.add('hidden');
+            document.getElementById('resultsSection').classList.remove('hidden');
+            
+            document.getElementById('scoreCircle').textContent = score + '%';
+            document.getElementById('totalQuestions').textContent = currentQuestions.length;
+            document.getElementById('correctAnswers').textContent = correct;
+            document.getElementById('wrongAnswers').textContent = wrong;
+            document.getElementById('scoreText').textContent = score + '%';
+        }
+
+        function restartQuiz() {
+            document.getElementById('resultsSection').classList.add('hidden');
+            document.getElementById('quizSection').classList.remove('hidden');
+            startQuiz();
+        }
+
+        // Start quiz on load
+        startQuiz();
+    </script>
+</body>
+</html>
